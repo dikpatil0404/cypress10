@@ -1,0 +1,23 @@
+
+
+ npm init -  To create the package.json file 
+
+ npm install cypress - to install cypress
+
+ npm install npx - to manage path 
+
+ /*---------------------------------------------------*/
+
+ We can run cypress testcases in two ways 
+
+ 1) Using test runner    --->  npx cypress open
+
+ 2) Using command line   ---->  npx cypress run
+
+ /*---------------------------------------------------*/
+
+ Testcases are always  written inside the intergration by default 
+
+// add folder 
+
+// 3-dayOne
