@@ -23,8 +23,7 @@ describe('tranverse method in cypress',function(){
         cy.get('.traversal-button-states').children().eq(2).should('have.text','Info')
     })
 
-    // first()  last()  eq() children() filter()
-
+    // first()  last()  eq() children() filter() find()
     it('To get DOM elements that match a specific selector, use the .filter() command.',function(){
         cy.visit('https://webdriveruniversity.com/Data-Table/index.html')
         cy.get('.traversal-button-states').children().filter('.disabled').should('have.text',"Warning")
@@ -36,6 +35,70 @@ describe('tranverse method in cypress',function(){
         cy.get('.pagination.traversal-pagination').children('li').find('a').should('have.length',7)
         cy.get('.list-group ').children().first().find('span').should('have.text',5)
     })
+
+
+    //// first()  last()  eq() children() filter() find()
+    // siblings method
+
+    // next()
+
+    it('To get the next sibling DOM element within elements, use the .next() command.',function(){
+        cy.visit('https://webdriveruniversity.com/Data-Table/index.html')
+        cy.get('#tea').next().should('have.text','Milk')
+    })
+
+    it('To get the previous sibling DOM element within elements, use the .prev() command.',function(){
+        cy.visit('https://webdriveruniversity.com/Data-Table/index.html')
+        cy.get('#tea').prev().should('have.text','Coffee')
+    })
+
+    it('To get all of the next sibling DOM elements within elements, use the .nextAll() command.',function(){
+        cy.visit('https://webdriveruniversity.com/Data-Table/index.html')
+        cy.get('#tea').nextAll().should('have.length',3)
+        cy.get('#tea').nextAll().eq(2).should('have.id','sugar')
+    })
+
+
+    it('To get all previous sibling DOM elements within elements, use the .prevAll() command.',function(){
+        cy.visit('https://webdriveruniversity.com/Data-Table/index.html')
+        cy.get('#sugar').prevAll().should('have.length',4)
+        cy.get('#sugar').prevAll().eq(2).should('have.id','tea')
+
+    })
+
+
+    it('To get all previous sibling DOM elements within elements, use the .prevAll() command.',function(){
+        cy.visit('https://webdriveruniversity.com/Data-Table/index.html')
+        cy.get('#sugar').prevAll().should('have.length',4)
+        cy.get('#sugar').prevAll().eq(2).should('have.id','tea')
+
+    })
+    it.only('To get all previous sibling DOM elements within elements until other element, use the .prevUntil() command.',function(){
+        cy.visit('https://webdriveruniversity.com/Data-Table/index.html')
+        cy.get('#sugar').prevUntil('#tea').should('have.length',2)
+        cy.get('#sugar').prevUntil('#tea').eq(1).should('have.id','milk')
+
+    })
+
+
+    it.only('To get all of the next sibling DOM elements within elements until another element, use the .nextUntil() command.',function(){
+        cy.visit('https://webdriveruniversity.com/Data-Table/index.html')
+        cy.get('#tea').nextUntil('#sugar').should('have.length',2)
+        cy.get('#tea').nextUntil('#sugar').eq(1).should('have.id','espresso')
+
+    })
+
+    it.only('To get all sibling DOM elements of elements, use the .siblings() command.',function(){
+        cy.visit('https://webdriveruniversity.com/Data-Table/index.html')
+        cy.get('#tea').siblings().should('have.length',4)
+    })
+
+
+
+
+
+
+
 
 
 
