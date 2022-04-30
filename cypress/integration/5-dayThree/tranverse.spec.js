@@ -73,7 +73,7 @@ describe('tranverse method in cypress',function(){
         cy.get('#sugar').prevAll().eq(2).should('have.id','tea')
 
     })
-    it.only('To get all previous sibling DOM elements within elements until other element, use the .prevUntil() command.',function(){
+    it('To get all previous sibling DOM elements within elements until other element, use the .prevUntil() command.',function(){
         cy.visit('https://webdriveruniversity.com/Data-Table/index.html')
         cy.get('#sugar').prevUntil('#tea').should('have.length',2)
         cy.get('#sugar').prevUntil('#tea').eq(1).should('have.id','milk')
@@ -81,17 +81,53 @@ describe('tranverse method in cypress',function(){
     })
 
 
-    it.only('To get all of the next sibling DOM elements within elements until another element, use the .nextUntil() command.',function(){
+    it('To get all of the next sibling DOM elements within elements until another element, use the .nextUntil() command.',function(){
         cy.visit('https://webdriveruniversity.com/Data-Table/index.html')
         cy.get('#tea').nextUntil('#sugar').should('have.length',2)
         cy.get('#tea').nextUntil('#sugar').eq(1).should('have.id','espresso')
 
     })
 
-    it.only('To get all sibling DOM elements of elements, use the .siblings() command.',function(){
+    it('To get all sibling DOM elements of elements, use the .siblings() command.',function(){
         cy.visit('https://webdriveruniversity.com/Data-Table/index.html')
         cy.get('#tea').siblings().should('have.length',4)
     })
+
+    it('To get all of the next sibling DOM elements within elements until another element, use the .nextUntil() command.',function(){
+        cy.visit('https://webdriveruniversity.com/Data-Table/index.html')
+        cy.contains("button[type='button']",'Button-1').nextUntil('body > div > div:nth-child(7) > div > div.traversal-button-other-states > div > button:nth-child(4)').should('have.length',2)
+
+    })
+
+    it('To remove DOM element(s) from the set of elements, use the .not() command.',function(){
+        cy.visit('https://webdriveruniversity.com/Data-Table/index.html')
+        cy.get('.traversal-button-states').children().not('.disabled').should('have.length',3)
+    })
+
+    it('To get the closest ancestor DOM element, use the .closest() command.',function(){
+        cy.visit('https://webdriveruniversity.com/Data-Table/index.html')
+        cy.contains('Home').closest('nav').should('have.attr','aria-label','breadcrumb')
+
+    })
+
+    it('To get parent DOM element of elements, use the .parent() command.',function(){
+        cy.visit('https://webdriveruniversity.com/Data-Table/index.html')
+        cy.get('#milk').parent().should('have.class','traversal-drinks-list')
+
+    })
+
+    it('To get parents DOM element of elements, use the .parents() command.',function(){
+        cy.visit('https://webdriveruniversity.com/Data-Table/index.html')
+        cy.get('#milk').parents().should('have.class','thumbnail').should('be.visible')
+
+    })
+
+    it.only('To get parents DOM element of elements until other element, use the .parentsUntil() command.',function(){
+        cy.visit('https://webdriveruniversity.com/Data-Table/index.html')
+        cy.get('#milk').parentsUntil('[class="col-sm-12"]').should('have.length',2)
+
+    })
+
 
 
 
